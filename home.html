@@ -1,0 +1,77 @@
+<link href="style.css" rel="stylesheet">
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript">
+    var apiUrl = 'http://localhost:8000/api/v1/titles/';
+    get_entete(apiUrl)
+    categoryBestRated(apiUrl)
+    // var detailUrl = 'http://localhost:8000/api/v1/titles/' + id
+    // console.log('new url = ' + detailUrl)
+    // userAction = async () => {
+    // const response = await fetch(apiUrl);
+    // const myJson = await response.json();
+    // console.log(myJson);
+    // }
+    </script>
+<section id = 'tete'>
+    <h2>En tete d'affiche</h2>
+    <!-- <p>This document provides a guide to help with the important task of choosing the correct Apple.</p> -->
+    <div id='tete2'></div>
+    <div id='illustration'></div>
+    <div id='description'><strong>description<BR></strong></div>
+</section>
+
+<section id = 'categorie'>
+    <h2 id = 'categorie '>Categorie best rating</h2>
+</section>
+
+<!--MODAL WINDOW VANILLA JS-->
+<button id="modalBtn" class="button" hidden="hidden">Click Me Dave</button>
+
+  <div id="simpleModal" class="modal-overlay">
+    <div class="modal-content">
+      <div id='modal_header' class="modal-header">
+          <span class="closeBtn"> x</span>
+          <h2>Header</h2>
+      </div>
+      <div id='modal_body' class="modal-body">
+        <p>Hello</p>
+        <p>Showing Dave how to make a modal</p>
+      </div>
+      <div class="modal-footer">
+        <h3>Footer</h3>
+      </div>
+    </div>
+  </div>
+
+  <script>
+          // Get modal element
+var modal = document.getElementById('simpleModal');
+// Get open modal button
+var modalBtn = document.getElementById('modalBtn');
+// Get close button
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+// Listen for open click
+modalBtn.addEventListener('click', openModal);
+// Listen for close click
+closeBtn.addEventListener('click', closeModal);
+// Listen for outside click
+window.addEventListener('click', outsideClick);
+
+// Open modal
+function openModal(){
+  modal.style.display = 'block';
+}
+
+// Close modal
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+// Click outside and close
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
+  </script>
