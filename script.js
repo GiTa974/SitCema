@@ -105,7 +105,7 @@ function feed_modal(apiUrl, id) {
           let score = 'imdb_score : ' + data.imdb_score + sep;
           let directors = 'realisateur(s) : ' + data.directors + sep;
           let actors = 'acteur(s) : ' + data.actors + sep;
-          let duration = 'duree : ' + data.duration + sep;
+          let duration = 'duree : ' + data.duration + " min" + sep;
           let countries = 'pays : ' + data.country + sep;
           let boxOffice = 'box office : ' + data.usa_gross_income + ' USD' + sep;
           let resume = 'Resume : ' + data.long_description + sep;

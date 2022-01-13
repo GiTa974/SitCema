@@ -26,9 +26,15 @@ button {
 .button_next{
   background-image: url('./images/right_arrow.png');
 }
+.button_next:hover{
+  background-image: url('./images/right_arrow_above.png');
+}
 
 .button_previous{
   background-image: url('./images/left_arrow.png');
+}
+.button_previous:hover{
+  background-image: url('./images/left_arrow_above.png');
 }
 
 /*Style de la fenetre en tete*/
