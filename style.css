@@ -1,6 +1,39 @@
+body {
+  /* overflow-x: hidden;  */
+  background-color: black;
+  color: white;
+}
+
+.moviesInaRow {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/*Style de bouton de navigation*/
+/*.button_previous {
+    background-color: blue;
+    
+}*/
+
+button {
+  /* background: transparent; */
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 14px;
+}
+
+.button_next{
+  background-image: url('./images/right_arrow.png');
+}
+
+.button_previous{
+  background-image: url('./images/left_arrow.png');
+}
+
 /*Style de la fenetre en tete*/
 .titleOne {
-    font-size: 50px;
+    font-size: 2rem;
 }
 .description {
     width: 250px;
@@ -35,12 +68,20 @@ body{
     line-height: 1.6;
   }
   
-  .button{
+ /* .button{
     background: #1ce;
     padding: 2em 2em;
     color: #fff;
     border:  0;
-  }
+  }*/
+
+  .button {     
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;        
+}
   
   .button:hover{
     background: #e439ef;
@@ -71,17 +112,19 @@ body{
   }
   
   .modal-header{
-    background: #1ce;
+    background: #1E1E1E;
     padding: 15px;
     color: #fff;
+    text-align: center;
   }
   
   .modal-body{
     padding: 10px 20px;
+    color:black;
   }
   
   .modal-footer{
-    background: #1ce;
+    background: #1E1E1E;
     padding: 10px;
     color: #fff;
     text-align: center;
@@ -102,11 +145,14 @@ body{
  .infosModal {
     /* font-size: 1rem; */
     /* background: white; */
+    text-align: justify;
     display: flex;
     flex-direction: row;
     grid-auto-rows: 1fr;
+    
   }
 
   img {
     align-self: center;
+    margin-left: 1em;
 }
