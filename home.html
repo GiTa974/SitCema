@@ -1,55 +1,49 @@
-<link href="style.css" rel="stylesheet">
-<script type="text/javascript" src="script.js"></script>
+<link href="./styles/moviesSiteStyle.css" rel="stylesheet">
+<script type="text/javascript" src="./scripts/moviesSite.js"></script>
 <script type="text/javascript">
   let apiUrl = 'http://localhost:8000/api/v1/titles/';
   DisplayOneTopRatedMovie(apiUrl)
-  // display to rated
+  // load top rated
   DisplayCategory(apiUrl, '?sort_by=-imdb_score', 'categorie01Section');
-  //display Drama
+  //load Drama
   DisplayCategory(apiUrl, '?genre=Drama', 'categorie02Section');
-  //display Drama
+  //load Action
   DisplayCategory(apiUrl, '?genre=Action', 'categorie03Section');
-  //display Drama
-  DisplayCategory(apiUrl, '?genre=Biography', 'categorie04Section');
-  //display Drama
-  DisplayCategory(apiUrl, '?genre=Adventure', 'categorie05Section');
-  
- 
-  
-  // sequence = [1,2,5]
+  //load Adventure
+  DisplayCategory(apiUrl, '?genre=Adventure', 'categorie04Section');
   
   </script>
-<section id = 'bestMovieSection'>
-  <h2>En tete d'affiche</h2>
-  <!-- <p>This document provides a guide to help with the important task of choosing the correct Apple.</p> -->
-  <div id='bestMovie'></div>
-  <div id='illustration'></div>
-  <div id='description' class='description'><strong><BR></strong></div>
-</section>
+<body>
+  <div id="loader" class="center"></div>
+
+  <section id = 'bestMovieSection'>
+    <h2>En tete d'affiche</h2>
+    <div id='bestMovie'></div>
+    <div id='infos' class='infos'>
+      <div id='illustration'></div>
+      <div id='description' class='description'><strong><BR></strong></div>
+    </div>
+      
+  </section>
   <script type="text/javascript">
   </script>
 
-<h2>Category best rating</h2>
-<section id = 'categorie01Section' class = 'moviesInaRow'>
-</section>
-<!-- <button class="button_previous" id="button_previous" type="button" onclick="previous('categorie01Section')" ><img src="./images/left_arrow.png"/></button>
-<button class="button_next" id="button_next" type="button" onclick="next('categorie01Section')"><img src="./images/right_arrow.png"/></button> -->
+  <h2>Category best rating</h2>
+    <section id = 'categorie01Section' class = 'moviesInaRow'>
+    </section>
 
-<h2>Category Drama</h2>
-<section id = 'categorie02Section' class = 'moviesInaRow'>
-</section>
+  <h2>Category Drama</h2>
+    <section id = 'categorie02Section' class = 'moviesInaRow'>
+    </section>
 
-<h2>Category Action</h2>
-<section id = 'categorie03Section' class = 'moviesInaRow'>
-</section>
+  <h2>Category Action</h2>
+    <section id = 'categorie03Section' class = 'moviesInaRow'>
+    </section>
 
-<h2>Category Biography</h2>
-<section id = 'categorie04Section' class = 'moviesInaRow'>
-</section>
-
-<h2>Category Adventure</h2>
-<section id = 'categorie05Section' class = 'moviesInaRow'>
-</section>
+  <h2>Category Adventure</h2>
+    <section id = 'categorie04Section' class = 'moviesInaRow'>
+    </section>
+</body>
 
 <!--MODAL WINDOW VANILLA JS-->
 <button id="modalBtn" class="button" hidden="hidden">Click Me Dave</button>
@@ -57,21 +51,19 @@
   <div id="simpleModal" class="modal-overlay">
     <div class="modal-content">
       <div id='modal_header' class="modal-header">
-          <span class="closeBtn"> x</span>
-          <h2>Header</h2>
+          <span id='closeBtn' class="closeBtn"> x</span>
+          <h2></h2>
       </div>
       <div id='modal_body' class="modal-body">
-        <p>Hello</p>
-        <p>Showing Dave how to make a modal</p>
       </div>
       <div class="modal-footer">
-        <h3>Footer</h3>
+        <h3></h3>
       </div>
     </div>
   </div>
 
   <script>
-          // Get modal element
+// Get modal element
 var modal = document.getElementById('simpleModal');
 // Get open modal button
 var modalBtn = document.getElementById('modalBtn');
@@ -101,9 +93,4 @@ function outsideClick(e){
     modal.style.display = 'none';
   }
 }
-  </script>
-
-  <script>
-    // window.onload = function(){placeButton()};
-    // window.onresize = function(){placeButton()};
   </script>
