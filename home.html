@@ -1,96 +1,95 @@
 <link href="./styles/moviesSiteStyle.css" rel="stylesheet">
 <script type="text/javascript" src="./scripts/moviesSite.js"></script>
-<script type="text/javascript">
-  let apiUrl = 'http://localhost:8000/api/v1/titles/';
-  DisplayOneTopRatedMovie(apiUrl)
-  // load top rated
-  DisplayCategory(apiUrl, '?sort_by=-imdb_score', 'categorie01Section');
-  //load Drama
-  DisplayCategory(apiUrl, '?genre=Drama', 'categorie02Section');
-  //load Action
-  DisplayCategory(apiUrl, '?genre=Action', 'categorie03Section');
-  //load Adventure
-  DisplayCategory(apiUrl, '?genre=Adventure', 'categorie04Section');
-  
-  </script>
+
 <body>
   <div id="loader" class="center"></div>
 
-  <section id = 'bestMovieSection'>
+  <script type="text/javascript">
+    let apiUrl = 'http://localhost:8000/api/v1/titles/';
+    DisplayOneTopRatedMovie(apiUrl)
+    // load top rated
+    DisplayCategory(apiUrl, '?sort_by=-imdb_score', 'categorie01Section');
+    //load Drama
+    DisplayCategory(apiUrl, '?genre=Drama', 'categorie02Section');
+    //load Action
+    DisplayCategory(apiUrl, '?genre=Action', 'categorie03Section');
+    //load Adventure
+    DisplayCategory(apiUrl, '?genre=Adventure', 'categorie04Section');
+  </script>
+
+  <section id='bestMovieSection'>
     <h2>En tete d'affiche</h2>
     <div id='bestMovie'></div>
     <div id='infos' class='infos'>
       <div id='illustration'></div>
       <div id='description' class='description'><strong><BR></strong></div>
     </div>
-      
+
   </section>
   <script type="text/javascript">
   </script>
 
   <h2>Category best rating</h2>
-    <section id = 'categorie01Section' class = 'moviesInaRow'>
-    </section>
+  <section id='categorie01Section' class='moviesInaRow'>
+  </section>
 
   <h2>Category Drama</h2>
-    <section id = 'categorie02Section' class = 'moviesInaRow'>
-    </section>
+  <section id='categorie02Section' class='moviesInaRow'>
+  </section>
 
   <h2>Category Action</h2>
-    <section id = 'categorie03Section' class = 'moviesInaRow'>
-    </section>
+  <section id='categorie03Section' class='moviesInaRow'>
+  </section>
 
   <h2>Category Adventure</h2>
-    <section id = 'categorie04Section' class = 'moviesInaRow'>
-    </section>
+  <section id='categorie04Section' class='moviesInaRow'>
+  </section>
 </body>
 
 <!--MODAL WINDOW VANILLA JS-->
 <button id="modalBtn" class="button" hidden="hidden">Click Me Dave</button>
 
-  <div id="simpleModal" class="modal-overlay">
-    <div class="modal-content">
-      <div id='modal_header' class="modal-header">
-          <span id='closeBtn' class="closeBtn"> x</span>
-          <h2></h2>
-      </div>
-      <div id='modal_body' class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <h3></h3>
-      </div>
+<div id="simpleModal" class="modal-overlay">
+  <div class="modal-content">
+    <div id='modal_header' class="modal-header">
+      <span id='closeBtn' class="closeBtn"> x</span>
+    </div>
+    <div id='modal_body' class="modal-body">
+    </div>
+    <div class="modal-footer">
     </div>
   </div>
+</div>
 
-  <script>
-// Get modal element
-var modal = document.getElementById('simpleModal');
-// Get open modal button
-var modalBtn = document.getElementById('modalBtn');
-// Get close button
-var closeBtn = document.getElementsByClassName('closeBtn')[0];
+<script>
+  // Get modal element
+  var modal = document.getElementById('simpleModal');
+  // Get open modal button
+  var modalBtn = document.getElementById('modalBtn');
+  // Get close button
+  var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-// Listen for open click
-modalBtn.addEventListener('click', openModal);
-// Listen for close click
-closeBtn.addEventListener('click', closeModal);
-// Listen for outside click
-window.addEventListener('click', outsideClick);
+  // Listen for open click
+  modalBtn.addEventListener('click', openModal);
+  // Listen for close click
+  closeBtn.addEventListener('click', closeModal);
+  // Listen for outside click
+  window.addEventListener('click', outsideClick);
 
-// Open modal
-function openModal(){
-  modal.style.display = 'block';
-}
+  // Open modal
+  function openModal() {
+    modal.style.display = 'block';
+  }
 
-// Close modal
-function closeModal(){
-  modal.style.display = 'none';
-}
-
-// Click outside and close
-function outsideClick(e){
-  if(e.target == modal){
+  // Close modal
+  function closeModal() {
     modal.style.display = 'none';
   }
-}
-  </script>
+
+  // Click outside and close
+  function outsideClick(e) {
+    if (e.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>

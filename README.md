@@ -13,4 +13,4 @@ A partir d'une APIRest founie ("OCMovies-API), créer une interface web qui affi
 **Installation :**
  - Installer l'APIRest en local en suivant les consignes : https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR
  - Copier les fichiers et les dossiers du dépots Git sur votre ordinateur : https://github.com/GiTa974/SitNema
- - Ouvrir le fichier "home.html" avec explorateur WEB réçent.
+ - Ouvrir le fichier "home.html" avec un explorateur WEB réçent.
