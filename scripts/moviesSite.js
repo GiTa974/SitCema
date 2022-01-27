@@ -1,20 +1,16 @@
-listOfCategories = ['categorie01Section', 'categorie02Section', 'categorie03Section', 'categorie04Section']
 
-
-function DisplayOneTopRatedMovie(apiUrl) {
+function DisplayOneTopRatedMovie(apiUrl) { // recupere les donnees du meilleur film
   displayLoader(true);
   let pathFilmsSortedByScore = '?sort_by=-imdb_score'
   fetch(apiUrl + pathFilmsSortedByScore).then(response => {
     return response.json();
   }).then(data => {
     let current_div = document.getElementById('bestMovie');
-    // current_div.innerHTML = data.results[0].title + '<BR>';
     let div = document.createElement("DIV");
     div.setAttribute("class", "titleOne");
     current_div.appendChild(div);
     div.innerHTML = data.results[0].title + ' (' + data.results[0].year + ')';
     movieURL = data.results[0].url;
-    // console.log('movie url = ' + movieURL);
     fetch(movieURL).then(response => {
       return response.json();
     }).then(data => {
@@ -27,45 +23,38 @@ function DisplayOneTopRatedMovie(apiUrl) {
       console.log('error', err);
     });
     src = data.results[0].image_url,
-      img = document.createElement('img');
+    img = document.createElement('img');
     let id = data.results[0].id + '';
-    // console.log(id);
     img.addEventListener("click", function () {
       feed_modal(apiUrl, id)
     });
     img.src = src;
     current_div = document.getElementById('illustration');
     current_div.appendChild(img)
-    // let btn = document.createElement("BUTTON");
-    // btn.innerHTML = "More Info"; 
     displayLoader(false);
   }).catch(err => {
     console.log('error', err);
   });
 }
 
-function DisplayCategory(apiUrl, filter, div) {
-  // let filter = '?sort_by=-imdb_score'
+// la liste des sections a enchirir d un caroussel avec 7 films
+listOfCategories = ['categorie01Section', 'categorie02Section', 'categorie03Section', 'categorie04Section']
+
+function DisplayCategory(apiUrl, filter, div) { // rempli le caroussel
   displayLoader(true);
   fetch(apiUrl + filter).then(response => {
     return response.json();
   }).then(data => {
-    // console.log(data);
-    // console.log(data.results);
     listOfMovies = data.results;
-    currentQuantityOfMovies = prepareData(listOfMovies, div, 0, 7);
-    // console.log('quantite de film : ' + currentQuantityOfMovies);
+    currentQuantityOfMovies = prepareData(listOfMovies, div, 0, 7); // je recupere 7 films max (en fait 5 dispo sur la page)
     let apiUrlNextPage = data.next;
-    // console.log(apiUrlNextPage);
     if (apiUrlNextPage) {
       fetch(apiUrlNextPage).then(response => {
         return response.json();
       }).then(data => {
         listOfMoviesNextPage = data.results;
-        prepareData(listOfMoviesNextPage, div, currentQuantityOfMovies, 7)
-        // console.log('quantite de film : ' + currentQuantityOfMovies);
+        prepareData(listOfMoviesNextPage, div, currentQuantityOfMovies, 7) // je recupere le reste pour arriver a 7 films si nécessaire
       }).catch(err => {
-        // Do something for an error here
         console.log('error no next page', err);
       });
     };
@@ -76,13 +65,11 @@ function DisplayCategory(apiUrl, filter, div) {
     // log error
     console.log('error', err);
   });
-
 };
 
-function prepareData(listOfMovies, div, currentQuantity, quantityMax) {
+function prepareData(listOfMovies, div, currentQuantity, quantityMax) { // prepare les donnees des elements du caroussel ou du titre a la une
   for (let i = 0; i < listOfMovies.length; i++) {
     currentQuantity++;
-    // console.log('try more film at' + currentQuantity)
     if (currentQuantity <= quantityMax) {
       let current_div = document.getElementById(div)
       let contenaire = document.createElement("contenair");
@@ -97,7 +84,6 @@ function prepareData(listOfMovies, div, currentQuantity, quantityMax) {
       let div_img = document.createElement("DIV");
       contenaire.appendChild(div_img)
       let id = listOfMovies[i].id + '';
-      // console.log(id);
       contenaire.addEventListener("click", function () {
         feed_modal(apiUrl, id);
       });
@@ -109,27 +95,24 @@ function prepareData(listOfMovies, div, currentQuantity, quantityMax) {
       img.src = src;
       div_img.appendChild(img);
     } else {
-      // console.log('reach the end with : ' + currentQuantity);  
+      // console.log('reach the end with : ' + currentQuantity); // check du nombre de film 
       break;
     };
   };
   return currentQuantity;
 };
 
-function feed_modal(apiUrl, id) {
+function feed_modal(apiUrl, id) { // rempli la fenetre modal avec les infos a la demande
   feed_loading();
   fetch(apiUrl + id).then(response => {
     return response.json();
   }).then(data => {
-    // console.log(data.long_description)
-    // console.log(data)
     description_div = document.getElementById('description');
-    // console.log(description_div);
     let head = document.getElementById('modal_header');
     head.removeChild(head.childNodes[0]);
     var title = document.createTextNode(data.title + ' (' + data.year + ')');
     head.insertBefore(title, document.getElementsByClassName('closeBtn')[0]);
-    // informations
+    // recuperation des informations d un film
     let body = document.getElementById('modal_body');
     let sep = '<BR>';
     let genre = 'genre(s) : ' + data.genres + sep;
@@ -158,20 +141,17 @@ function feed_modal(apiUrl, id) {
       // console.error(error);
       infos.appendChild(img);
     };
-    //   body.innerHTML = data.description;
   }).catch(err => {
-    // Do something for an error here
     console.log('error', err);
   });
   openModal();
 };
 
-function feed_loading() {
+function feed_loading() { // rempli la fenetre modal avec des elements pour indiquer le chargement des donnees
   let head = document.getElementById('modal_header');
   var loadingText = document.createTextNode('(LOADING ...)');
   head.removeChild(head.childNodes[0]);
   head.insertBefore(loadingText, document.getElementsByClassName('closeBtn')[0]);
-  // document.getElementById('modal_header').innerHTML = 'LOADING ...';
   document.getElementById('modal_body').innerHTML = loadingText;
   src = './images/loading.png';
   img = document.createElement('img');
@@ -184,63 +164,45 @@ function feed_loading() {
   };
 };
 
-function placeButton(sectionName) {
-  //TODO with class 
-  // console.log('section name = ' + sectionName);
+function placeButton(sectionName) { // placement des boutons de part et d autre du caroussel
   let mydiv = document.getElementById(sectionName);
   let button_previous = mydiv.nextSibling;
   let button_next = mydiv.nextSibling.nextSibling;
-  // console.log('NS NS' + button);
   let witdh_button_next = button_next.offsetWidth;
   let height_button_next = button_next.offsetHeight;
   let displayX = document.body.offsetWidth;
-  // let witdh_button_previous = button_previous.offsetWidth;
   let height_button_previous = button_previous.offsetHeight;
-  // let displayY = document.body.offsetHeight;
   let positionXButtonNext = displayX - witdh_button_next;
   let positionYButtonNext = 318 / 2 + height_button_next / 2;
   button_next.style.marginLeft = positionXButtonNext;
   let positionXButtonPrevious = 0;
   let positionYButtonPrevious = 318 / 2 + height_button_previous / 2;;
-  // button.style.marginTop  = '-200px';
   button_next.style.position = 'absolute';
   button_next.style.marginTop = '-' + positionYButtonNext;
-
-  // console.log(button_previous);
-  // let height_button_previous = button_previous.offsetHeight;
-  // displayY = document.body.offsetHeight;
   button_previous.style.marginLeft = positionXButtonPrevious;
-  // button.style.marginTop  = '-200px';
   button_previous.style.position = 'absolute';
   button_previous.style.marginTop = '-' + positionYButtonPrevious;
 };
 
-function previous(sectionName) {
-  // console.log('previous');
+function previous(sectionName) { // fonctionnement du bouton previous caroussel en arriere
   let divToImpact = document.getElementById(sectionName);
   let elementToReplace = divToImpact.removeChild(divToImpact.lastChild);
-  // console.log(elementToReplace);
   divToImpact.insertBefore(elementToReplace, divToImpact.firstChild);
 };
-function next(sectionName) {
-  // console.log('next ' + sectionName);
+function next(sectionName) { // fonctionnement du bouton suivant caroussel en avant
   let divToImpact = document.getElementById(sectionName);
-  // console.log(divToImpact);
   let elementToReplace;
-  if (divToImpact.firstChild.textContent == '\n' || divToImpact.firstChild.textContent == '\r\n' || divToImpact.firstChild.textContent == '\n    ') {
+  if (divToImpact.firstChild.textContent.indexOf('\n')>-1) { // j ai un element qui se cale en premier avant les films je ne sais pas pourquoi ...
     divToImpact.firstChild.remove();
-    // elementToReplace = divToImpact.removeChild(divToImpact.firstChild.nextSibling);
     elementToReplace = divToImpact.removeChild(divToImpact.firstChild);
     console.log('element foireux detected');
   } else {
     elementToReplace = divToImpact.removeChild(divToImpact.firstChild);
   };
-  // console.log(elementToReplace);
-  // divToImpact.insertBefore(elementToReplace, divToImpact.lastChild.nextSibling);
   divToImpact.appendChild(elementToReplace);
 };
 
-function createButtons(sectionName) {
+function createButtons(sectionName) { // creation des boutons
   // button next 
   button_next = document.createElement("button");
   section = document.getElementById(sectionName);
@@ -262,13 +224,13 @@ function createButtons(sectionName) {
   return { button_next, button_previous };
 };
 
-window.onresize = function () {
+window.onresize = function () { // appelle le placement des boutons au redimensionnement de la page
   for (let i = 0; i < listOfCategories.length; i++) {
     placeButton(listOfCategories[i]);
   };
 };
 
-function displayLoader(display) {
+function displayLoader(display) { // affiche ou pas le loader ou le corps du html
   if (display === true) {
     document.querySelector("body").style.visibility = "hidden";
     document.querySelector("#loader").style.visibility = "visible";
@@ -278,4 +240,24 @@ function displayLoader(display) {
   }
 };
 
-// MODAL SCRIPT
+// Fonctionnement de la Fenetre Modal
+  var modal = document.getElementById('simpleModal');
+  var modalBtn = document.getElementById('modalBtn');
+  var closeBtn = document.getElementsByClassName('closeBtn')[0];
+  modalBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', outsideClick);
+  // ouvrir la modal
+  function openModal() {
+    modal.style.display = 'block';
+  };
+  // fermer la modal
+  function closeModal() {
+    modal.style.display = 'none';
+  };
+  // cliquer en dehors de la modal
+  function outsideClick(e) {
+    if (e.target == modal) {
+      modal.style.display = 'none';
+    };
+  };

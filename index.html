@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html> -->
+<html lang='fr'>
+  <head>
+    <title>JUSTSTREAMIT</title>
+  </head>
+  <body>
+    <link href="./styles/moviesSiteStyle.css" rel="stylesheet">
+    <!--MODAL WINDOW VANILLA JS-->
+    <button id="modalBtn" class="button" hidden="hidden"></button>
+    <div id="simpleModal" class="modal-overlay">
+      <div class="modal-content">
+        <div id='modal_header' class="modal-header">
+          <span id='closeBtn' class="closeBtn"> x</span>
+        </div>
+        <div id='modal_body' class="modal-body">
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./scripts/moviesSite.js"></script>
+    <div id="loader" class="center"></div>
+    <script type="text/javascript">
+      let apiUrl = 'http://localhost:8000/api/v1/titles/';
+      DisplayOneTopRatedMovie(apiUrl)
+      // load top rated
+      DisplayCategory(apiUrl, '?sort_by=-imdb_score', 'categorie01Section');
+      //load Drama
+      DisplayCategory(apiUrl, '?genre=Drama', 'categorie02Section');
+      //load Action
+      DisplayCategory(apiUrl, '?genre=Action', 'categorie03Section');
+      //load Adventure
+      DisplayCategory(apiUrl, '?genre=Adventure', 'categorie04Section');
+    </script>
+
+    <section id='bestMovieSection'>
+      <h1>En tete d'affiche</h1>
+      <div id='bestMovie'></div>
+      <div id='infos' class='infos'>
+        <div id='illustration'></div>
+        <div id='description' class='description'><strong><BR></strong></div>
+      </div>
+
+    <h1>Category best rating</h1>
+    <section id='categorie01Section' class='moviesInaRow'>
+    </section>
+
+    <h1>Category Drama</h1>
+    <section id='categorie02Section' class='moviesInaRow'>
+    </section>
+
+    <h1>Category Action</h1>
+    <section id='categorie03Section' class='moviesInaRow'>
+    </section>
+
+    <h1>Category Adventure</h1>
+    <section id='categorie04Section' class='moviesInaRow'>
+    </section>
+  </body>
+</html>

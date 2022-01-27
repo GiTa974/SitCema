@@ -1,4 +1,4 @@
-/*Loading stuff*/
+/*Loading wheel*/
 #loader {
   border: 12px solid #f3f3f3;
   border-radius: 50%;
@@ -22,8 +22,7 @@
   right: 0;
   margin: auto;
 }
-
-/*Fin de Loading stuff*/
+/*Fin de Loading wheel*/
 
 body {
   /* overflow-x: hidden;  */
@@ -36,14 +35,8 @@ body {
   overflow-y: hidden;
 }
 
-/*Style de bouton de navigation*/
-/*.button_previous {
-    background-color: blue;
-    
-}*/
-
+/*BUTTON DU CAROUSSEL*/
 button {
-  /* background: transparent; */
   background: transparent;
   border: none;
   width: 58px;
@@ -65,6 +58,7 @@ button {
 .button_previous:hover {
   background-image: url('../images/left_arrow_above.png');
 }
+/*FIN BUTTON DU CAROUSSEL*/
 
 /*Style de la fenetre en tete*/
 .titleOne {
@@ -73,18 +67,13 @@ button {
 
 .description {
   width: 350px;
-  /* white-space: nowrap; */
-  /* overflow: hidden; */
   text-overflow: ellipsis;
-  /* display: flex;
-    flex-direction: column; */
   margin: 15px;
 }
 
 .infos {
   display: flex;
   flex-direction: row-;
-  /* justify-content: center; */
 }
 
 /*Style de la fenetre categorie*/
@@ -112,13 +101,6 @@ body {
   font-size: 20px;
   line-height: 1.6;
 }
-
-/* .button{
-    background: #1ce;
-    padding: 2em 2em;
-    color: #fff;
-    border:  0;
-  }*/
 
 .button {
   background-color: Transparent;
@@ -190,8 +172,6 @@ body {
 }
 
 .infosModal {
-  /* font-size: 1rem; */
-  /* background: white; */
   text-align: justify;
   display: flex;
   flex-direction: row;
